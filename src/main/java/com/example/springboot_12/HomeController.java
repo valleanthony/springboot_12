@@ -34,7 +34,7 @@ public class HomeController {
     @PostMapping
     public String processActor(@ModelAttribute Actor actor, @RequestParam("file")MultipartFile file){
         if(file.isEmpty()){
-            return "redirect:/add";
+            return "redirect:/";
         }
         try{
             Map uploadResult =cloudc.upload(file.getBytes(),
@@ -43,9 +43,9 @@ public class HomeController {
             actor.setHeadShot(uploadResult.get("url").toString());
             actorRepo.save(actor);} catch (IOException e){
             e.printStackTrace();
-            return "redirect:/add";
+            return "redirect:/";
         }
-        return "redirect:/add";
+        return "redirect:/";
 
 
         }
